@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dear Rika ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ffd1dc,#ffe4ec);
+overflow-x:hidden;
+color:#444;
+}
+
+.page{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:30px;
+}
+
+.card{
+background:white;
+width:100%;
+max-width:420px;
+padding:25px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+text-align:center;
+}
+
+.cover-img{
+width:220px;
+height:280px;
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+
+h1{
+font-family:'Caveat',cursive;
+font-size:48px;
+color:#ff4f81;
+}
+
+h2{
+margin-bottom:15px;
+color:#ff4f81;
+}
+
+.date{
+margin-top:10px;
+font-size:18px;
+}
+
+.btn{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#ff4f81;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+.scrap{
+display:none;
+padding:30px 15px;
+}
+
+.polaroid{
+background:white;
+padding:10px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+margin-bottom:20px;
+transform:rotate(-2deg);
+}
+
+.polaroid img{
+width:100%;
+border-radius:10px;
+}
+
+.note{
+background:#fff7fa;
+padding:20px;
+border-radius:15px;
+line-height:1.8;
+margin-top:15px;
+}
+
+.typewriter{
+border-right:3px solid #ff4f81;
+white-space:pre-line;
+overflow:hidden;
+}
+
+textarea{
+width:100%;
+height:120px;
+border-radius:15px;
+border:1px solid #ddd;
+padding:15px;
+margin-top:15px;
+resize:none;
+}
+
+.heart{
+position:fixed;
+font-size:20px;
+pointer-events:none;
+animation:fall 6s linear forwards;
+z-index:999;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
+.footer{
+margin-top:20px;
+font-size:14px;
+opacity:.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- COVER -->
+
+<section class="page" id="coverPage">
+
+<div class="card">
+
+<img src="unnamed.jpg" class="cover-img">
+
+<h1>Dear Rika 💌</h1>
+
+<p class="date">
+Happy Birthday 🎂<br>
+18 Years Old ✨<br><br>
+07 June 2026
+</p>
+
+<div id="typingCover" class="note"></div>
+
+<button class="btn" onclick="openBook()">
+Open My Scrapbook ❤️
+</button>
+
+<div class="footer">
+Made with ❤️
+</div>
+
+</div>
+
+</section>
+
+<!-- SCRAPBOOK -->
+
+<div class="scrap" id="scrapbook">
+
+<section class="page">
+
+<div class="card">
+
+<div class="polaroid">
+<img src="unnamed.jpg">
+</div>
+
+<h2>🌷 Page One</h2>
+
+<div class="note typewriter" id="text1"></div>
+
+</div>
+
+</section>
+
+<section class="page">
+
+<div class="card">
+
+<div class="polaroid" style="transform:rotate(2deg)">
+<img src="unnamed.jpg">
+</div>
+
+<h2>💕 Page Two</h2>
+
+<div class="note typewriter" id="text2"></div>
+
+</div>
+
+</section>
+
+<section class="page">
+
+<div class="card">
+
+<div class="polaroid">
+<img src="unnamed.jpg">
+</div>
+
+<h2>💌 Page Three</h2>
+
+<div class="note typewriter" id="text3"></div>
+
+</div>
+
+</section>
+
+<section class="page">
+
+<div class="card">
+
+<h2>❤️ Last Page</h2>
+
+<div class="note typewriter" id="text4"></div>
+
+<h2 style="margin-top:25px;">
+💌 Balas Pesanku
+</h2>
+
+<textarea
+id="pesan"
+placeholder="Tulis sesuatu untukku..."
+></textarea>
+
+<button class="btn" onclick="kirimWA()">
+Kirim ke WhatsApp ❤️
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+<script>
+
+const nomorWA = "6289698035890";
+
+function openBook(){
+
+document.getElementById("coverPage").style.display="none";
+document.getElementById("scrapbook").style.display="block";
+
+document.getElementById("music").play();
+
+startTyping();
+}
+
+function typeEffect(element,text,speed=35){
+
+let i=0;
+
+function typing(){
+
+if(i<text.length){
+
+element.innerHTML += text.charAt(i);
+i++;
+
+setTimeout(typing,speed);
+}
+
+}
+
+typing();
+}
+
+function startTyping(){
+
+typeEffect(
+document.getElementById("text1"),
+`Happy birthday Kamu🥳🎂🥳
+
+utututuu udah gede anak orang,
+18 tahun nih yeee🤗
+
+panjang umur sehat selalu yakk,
+Maaf yak cuma bisa ngasih hadiah seadanya.`
+);
+
+setTimeout(()=>{
+
+typeEffect(
+document.getElementById("text2"),
+`seneng deh bisa ketemu kamu lagi,
+bareng kamu lagi,
+deket sama kamu lagi
+meski agak renggang sih mwehehe.`
+);
+
+},500);
+
+setTimeout(()=>{
+
+typeEffect(
+document.getElementById("text3"),
+`Beberapa minggu ini aku sadar
+kalo kita emang gabakal bisa
+bareng lagi dari awal.
+
+nyata nya cuma Aku sendiri
+yang bertahan dari awal.
+
+🎈🎂🎈 HBD 🎈🎂🎈`
+);
+
+},1000);
+
+setTimeout(()=>{
+
+typeEffect(
+document.getElementById("text4"),
+`mungkin aku bukan orang
+yang kamu harap buat hadir
+di hidup kamu.
+
+Tapi aku bisa ngetreat kamu
+layaknya orang yang aku harap
+di hidup aku. 😌
+
+Terima kasih ya,
+udah hadir di hidupku ❤️`
+);
+
+},1500);
+
+}
+
+typeEffect(
+document.getElementById("typingCover"),
+`Open when you're ready...
+Aku punya sesuatu untukmu 💌`,
+50
+);
+
+function kirimWA(){
+
+let pesan =
+document.getElementById("pesan").value;
+
+if(pesan.trim()==""){
+alert("Isi pesannya dulu ya ❤️");
+return;
+}
+
+let text =
+`Hai ❤️
+
+Aku udah baca scrapbooknya.
+
+Ini balasanku:
+
+${pesan}`;
+
+window.open(
+"https://wa.me/"+nomorWA+
+"?text="+encodeURIComponent(text),
+"_blank"
+);
+
+}
+
+function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=
+(Math.random()*20+15)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+}
+
+setInterval(createHeart,350);
+
+</script>
+
+</body>
+</html>
